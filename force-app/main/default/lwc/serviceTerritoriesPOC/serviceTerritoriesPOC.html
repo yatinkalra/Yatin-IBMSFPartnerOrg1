@@ -1,0 +1,22 @@
+<template>
+    <a href="#" onclick={toggleAccordion}>Click here</a>
+    <div if:true={accordionVisible}>
+        <lightning-accordion class="example-accordion">
+            <template for:each={accordionSections} for:item="section">
+                <lightning-accordion-section key={section.id} name={section.id} label={section.title}>
+                    <ul>
+                        <template for:each={section.items} for:item="item">
+                            <li key={item.id}>
+                                <label>
+                                    <input type="checkbox" value={item.value} data-section-name={section.title} checked={item.checked} onchange={handleCheckboxChange} />
+                                    {item.label}
+                                </label>
+                            </li>
+                        </template>
+                    </ul>
+                </lightning-accordion-section>
+            </template>
+        </lightning-accordion>
+        <lightning-button alternative-text="Retrieve" class="slds-float_right" label="Retrieve" onclick={handleRetrieve}></lightning-button>
+    </div>
+</template>

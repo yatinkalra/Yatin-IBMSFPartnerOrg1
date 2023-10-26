@@ -1,0 +1,58 @@
+<!--
+  @description       : Header component for Shift Calendar.
+                       Includes Week scroll event
+  @author            : Jeetendra Jadhav
+  @group             : 
+  @last modified on  : 08-08-2022
+  @last modified by  : Jeetendra Jadhav
+-->
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_4-of-12" style="margin-left: 1%;">
+                <lightning-icon icon-name="standard:shift" size="medium">
+                </lightning-icon>
+                <span class="slds-p-left_medium table-title">
+                    {cmpTitle}
+                </span>
+            </div>
+            <div class="slds-col slds-size_5-of-12 slds-grid slds-gutters legend-div">
+                <div class="slds-p-right_x-large">
+                    <div class='legendBox' style={saveLegend}></div>&nbsp;&nbsp; Saved
+                </div>
+                <div class="slds-p-right_x-large">
+                    <div class='legendBox' style={inProgressLegend}></div>&nbsp;&nbsp; In Progress
+                </div>
+                <div class="slds-p-right_x-large">
+                    <div class='legendBox' style={adjustedLegend}></div>&nbsp;&nbsp; Shift Adjusted
+                </div>
+                <div class="">
+                    <div class='legendBox' style={errorLegend}></div>&nbsp;&nbsp; Error
+                </div>
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-grid slds-gutters">
+                <div class="slds-col slds-size_7-of-12 slds-p-right_medium">
+                    <lightning-input type="date" variant="label-hidden" min={minDate} max={maxDate}
+                        placeholder="Select Week..." value={dateSelected} onchange={onDateChange}>
+                    </lightning-input>
+                </div>
+                <div if:true={showDateClear} title="Clear Date" class="slds-col slds-size_1-of-12 slds-grid slds-gutters"
+                    style="margin-left: -0.7rem;">
+                    <lightning-icon size="x-small"
+                        class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default clearbox"
+                        icon-name="utility:clear"  onclick={clearDate}>
+                    </lightning-icon>
+                </div>
+                <div class="slds-col slds-size_5-of-12">
+                    <lightning-button-icon data-id="previous" icon-name="utility:left" disabled
+                        class="slds-m-left_xx-small slds-p-right_small prevBtn" title="Previous Weeks"
+                        onclick={navigateWeek}>
+                    </lightning-button-icon>
+                    <lightning-button-icon data-id="next" icon-name="utility:right"
+                        class="slds-m-left_xx-small  nextBtn" title="Next Weeks" onclick={navigateWeek}>
+                    </lightning-button-icon>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,8 @@
+.pageNumGrid {
+	height: 35px;
+}
+
+.activePage {
+	text-decoration: underline;
+	font-weight: bold;
+}

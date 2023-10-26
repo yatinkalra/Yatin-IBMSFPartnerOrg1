@@ -1,0 +1,33 @@
+<!--
+  @description       : Container component for Header, Body(Datatable), Footer(Pagination, Save/Generate events)
+  @author            : Jeetendra Jadhav
+  @group             : 
+  @last modified on  : 08-07-2022
+  @last modified by  : Jeetendra Jadhav
+-->
+<template>
+  <template if:true={showSpinner}>
+    <div class="slds-spinner_container">
+      <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+        <span class="slds-assistive-text">Loading</span>
+        <div class="slds-spinner__dot-a"></div>
+        <div class="slds-spinner__dot-b"></div>
+      </div>
+    </div>
+  </template>
+  <c-pdcwe_shift-creation-header week-scroll-count={weekScrollCount} no-of-weeks-on-page={noOfWeeksOnPage}
+    no-of-weeks-to-scroll={noOfWeeksToScroll} adjusted-legend={adjustedStatusColor} save-legend={saveStatusColor}
+    in-progress-legend={inProgressStatusColor} error-legend={errorStatusColor} onnavigate={navigateWeek}
+    ondateselection={dateselection} oncleardate={clearDate} min-date={minDate} max-date={maxDate}>
+  </c-pdcwe_shift-creation-header>
+  <c-pdcwe_shift-creation-data-table onerrorinloading={errorOnLoad} onnoshiftchange={noShiftChange}
+    week-navigate-value={weekNavigateValue} date-selected={selectedDate} onrefreshtable={refreshTable}
+    onsavedone={saveDone} onloaddata={loadPageData} page-no={pageNumber}>
+  </c-pdcwe_shift-creation-data-table>
+  <template if:true={isDataTableGenerated}>
+    <c-pdcwe_shift-creation-footer enable-generate-button={enableGenerateButton} ongenerateshift={fireGenerateShift}
+      page-size={pageSize} record-count={recordCount} pages-to-display={pagesToDisplay}
+      onhandlepagenavigation={handlenavigation} onsavedraftshift={fireShiftSaveEvent}>
+    </c-pdcwe_shift-creation-footer>
+  </template>
+</template>

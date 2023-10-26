@@ -1,0 +1,65 @@
+<!--
+  @description       : Custom data table component with lookup input as cells
+  @author            : Jeetendra Jadhav
+  @group             : 
+  @last modified on  : 11-10-2022
+  @last modified by  : Jeetendra Jadhav
+  @Modified Description: Update Vendor and GF filter to refine the search result [GRIDLYNX-13512]
+-->
+<template>
+    <lightning-card>
+        <div class="slds-m-around_medium" style="margin-top: -0.8rem;">
+            <div class="slds-grid slds-wrap" style="margin-bottom: 0.6rem;">
+                <template if:false={isGFUser}>
+                    <div class="slds-col slds-size_3-of-12">
+                        <lightning-record-edit-form object-api-name="Shift_Calendar__c">
+                            <span>Vendor Account</span>
+                            <lightning-input-field
+                                class="filter-input slds-size_10-of-12 slds-popover slds-popover_edit slds-popover__body"
+                                field-name="Vendor_Account__c" label="Vendor Account" variant="label-hidden"
+                                onchange={handleAccountChange}>
+                            </lightning-input-field>
+                        </lightning-record-edit-form>
+                    </div>
+                </template>
+                <div class="slds-col slds-size_3-of-12">
+                    <lightning-record-edit-form object-api-name="Shift_Calendar__c">
+                        <span>General Foreman</span>
+                        <lightning-input-field
+                            class="filter-input slds-size_10-of-12 slds-popover slds-popover_edit slds-popover__body"
+                            field-name="General_Foreman__c" label="General Foreman" variant="label-hidden"
+                            onchange={handleGFChange}>
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                    <lightning-record-edit-form object-api-name="WorkOrder">
+                        <span>Service Centers</span>
+                        <lightning-input-field
+                            class="filter-input slds-size_10-of-12 slds-popover slds-popover_edit slds-popover__body"
+                            field-name="ServiceTerritoryId" variant="label-hidden" label="Primary Territory"
+                            onchange={handleTerritoryChange}>
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                </div>
+            </div>
+            <template if:true={tableRecords}>
+                <c-pdcwe_custom-data-table key-field="Id" data={tableRecords} columns={tableColumns}
+                    hide-checkbox-column="true" onedit={handleEdit} onvaluechange={handleChange}
+                    onsamevalueselection={handleSameValueSelection} >
+                </c-pdcwe_custom-data-table>
+            </template>
+        </div>
+    </lightning-card>
+    <template if:true={showTableSpinner}>
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,31 @@
+<!--
+  @description       : Pagination for Data table records
+  @author            : Arpita Bose
+  @group             : 
+  @last modified on  : 08-07-2022
+  @last modified by  : Jeetendra Jadhav
+-->
+<template>
+	<div class="slds-m-aroung_small slds-align_absolute-center" style="float: right;">
+		<div slot="actions" class="slds-grid">
+			<lightning-button variant="base" title="Previous page" icon-name="utility:chevronleft" icon-position="right"
+				icon-size="medium" onclick={prevBtnHandler} class="prevBtn slds-float_left">
+			</lightning-button>
+			<template if:true={currentPageNumbers}>
+				<div class="slds-grid slds-align_absolute-center pageNumGrid">
+					<template for:each={currentPageNumbers} for:item="page">
+						<div key={page} class="slds-p-right--xx-small slds-p-left--xx-small" style="font-size: 1.1rem;">
+							<a key={page} data-id={page} class="dummyAnch" onclick={pageClickHandler}>{page}</a>
+						</div>
+					</template>
+					<template if:true={hasMorePages}>
+						<lightning-button variant="base" label={morePagesBtnLabel} disabled> </lightning-button>
+					</template>
+				</div>
+			</template>
+			<lightning-button variant="base" title="Next page" icon-name="utility:chevronright" icon-size="medium"
+				icon-position="left" onclick={nextBtnHandler} class="nextBtn slds-float_right">
+			</lightning-button>
+		</div>
+	</div>
+</template>

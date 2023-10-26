@@ -1,0 +1,23 @@
+<!--
+  @description       : Footer componenet which includes pagination and Save, Generate shift events
+  @author            : Arpita Bose
+  @group             : 
+  @last modified on  : 07-24-2022
+  @last modified by  : Jeetendra Jadhav
+-->
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_6-of-12" style="float:right">
+                <c-pdcwe_-pagination page-size={pageSize} pages-to-display={pagesToDisplay} record-count={recordCount}
+                    onnavigatetopage={callcontainerpagenavigation}></c-pdcwe_-pagination>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-float_right">
+                <lightning-button class="slds-float_right slds-p-right_large generateBtn"  label="Generate Shift"
+                    onclick={generateShift} variant="brand" icon-position="right" name="create"></lightning-button>
+                <lightning-button class="slds-float_right slds-p-right_x-large" label="Save Shift" onclick={saveShift}
+                    variant="brand" icon-position="right" name="save"></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
